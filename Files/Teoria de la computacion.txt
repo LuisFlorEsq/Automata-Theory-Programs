@@ -1,0 +1,16 @@
+Los automatas van a determinar si una cadena pertenece o no a un lenguaje
+	Estados finales del automata = La cadena pertenece al lenguaje
+	La cadena no llega a los estados finales del automata = La cadena no pertenece al lenguaje
+
+
+Como funciona un compilador
+Analisis y Sintesis
+
+	Analizador sintactico
+	Analizador ...
+
+
+Lenguaje ensamblador -> Optimizacion -> Binario
+
+
+Propiedades de los automatas

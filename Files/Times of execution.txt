@@ -1,0 +1,21 @@
+Binary test time:
+
+	0.9518766403198242
+	0.6306192874908447
+	0.545637845993042
+	0.5140438079833984
+
+Binary alphabet time:
+
+	0.4881110191345215
+	1.1629612445831299
+	0.5912730693817139
+	0.5577852725982666
+
+
+Prime test using built in function :
+10 millions --> 6 segundos
+
+
+Prime test using python library:
+10 millions --> 2 segundos
