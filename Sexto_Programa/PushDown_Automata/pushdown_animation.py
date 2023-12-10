@@ -25,7 +25,7 @@ def initialize_animation():
     py.init()
     
     # Basic configuration
-    surface = py.display.set_mode((400,300)) # Window size
+    surface = py.display.set_mode((500,500)) # Window size
     font = py.font.SysFont("Garamond", 15) # Type font and size font
     
     # Text configuration
@@ -36,7 +36,7 @@ def initialize_animation():
     stackZ0_Text = font.render('Z0', False, (0, 0, 0))
     
     color_init = (255, 255, 255)
-    space_init = 250
+    space_init = 330
     
     # Draw the first element of the stack
     py.draw.rect(surface, color_init, py.Rect(175, space_init, 50, 30))
@@ -62,6 +62,22 @@ def push_animation(surface, color, space, number0_Text, stack_Text):
     surface.blit(stack_Text, (200, space))
     py.time.delay(1000)
     py.display.flip()
+    
+
+# def state_animation(surface, color, coords, state_Text):
+    
+#     """
+#     Generates a square with pygame to represent the current state
+#     """
+    
+#     # Draw a white rectangle on the window
+    
+    
+#     py.draw.rect(surface, color, py.Rect(175, space, 50, 30))
+#     surface.blit(number0_Text, (230, space))
+#     surface.blit(stack_Text, (200, space))
+#     py.time.delay(1000)
+#     py.display.flip()
     
     
     

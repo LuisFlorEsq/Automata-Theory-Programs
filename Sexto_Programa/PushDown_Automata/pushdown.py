@@ -49,7 +49,7 @@ def actions_PDA(string, animate, filename_ID):
     pda = {
         
         'q': {'0': 'q', '1': 'p'},
-        'p': {'1': 'p', ' ': 'f'}
+        'p': {'0': 'p', '1': 'p', ' ': 'f'}
         
     }
     
@@ -90,7 +90,7 @@ def validate_string_PDA(string_validate, PDA, animate, filename_ID):
            
         color_0 = (255,255,255)   # Rectangles color
         color_1 = (0, 0, 0)
-        space = 210   
+        space = 290   
 
     # First we have to check if the string begins with '0'
     
@@ -140,6 +140,9 @@ def validate_string_PDA(string_validate, PDA, animate, filename_ID):
             elif current_state == 'p':
                 
                 print(stack.peek())
+                
+                if element == '0':
+                    return False
                 
                 if stack.peek() == 'X':
                     stack.pop()
@@ -239,6 +242,7 @@ def main():
         
         if exit == 1:
             
+            print("Binary String")
             binary_string = str(input("\nEnter a binary string: "))
                        
             # Calculate the binary string len, then decide if show the animation
@@ -246,7 +250,7 @@ def main():
             
             len_string = len(binary_string)
             
-            if len_string < 15:
+            if len_string < 10:
                 
                 animate = True
             
@@ -255,7 +259,23 @@ def main():
             
         elif exit == 2:
             
-            print("Random String")
+            print("Random Binary String")
+                
+            binary_string = ''.join(random.choice('01') for _ in range(random.randint(1, 10)))
+                       
+            # Calculate the binary string len, then decide if show the animation
+            # Animation n < 15
+            
+            len_string = len(binary_string)
+            
+            if len_string < 10:
+                
+                animate = True
+            
+            
+            actions_PDA(binary_string, animate, filename_ID)
+            
+            
             
         else:
             
