@@ -15,7 +15,7 @@ from stack import Stack
 from pushdown_animation import initialize_animation, push_animation, pop_animation
 import random
 
-filename_ID = 'Descriptions.txt'
+filename_ID = 'StackRelation.txt'
 
 
 
@@ -55,7 +55,7 @@ def actions_PDA(string, animate, filename_ID):
     
     valid_string = False
     
-    valid_string = validate_string_PDA(string, pda, animate)
+    valid_string = validate_string_PDA(string, pda, animate, filename_ID)
     
     if (valid_string):
         print("The string " + string + " is valid")
@@ -66,7 +66,7 @@ def actions_PDA(string, animate, filename_ID):
    
     
     
-def validate_string_PDA(string_validate, PDA, animate):
+def validate_string_PDA(string_validate, PDA, animate, filename_ID):
     """
     Function that implements the PDA logic to determine if the string is valid.
 
@@ -78,6 +78,8 @@ def validate_string_PDA(string_validate, PDA, animate):
     stack = Stack()
     i = 0
     start_pop = True
+    stack_symbols = 'Z0'
+    valid = False
     
     if animate:
         
@@ -101,13 +103,13 @@ def validate_string_PDA(string_validate, PDA, animate):
     
     if start == '1':
         
-        return False
+        valid = False
     
     elif start == '0':
         
+        write_file(filename_ID, 'q', string_validate, stack_symbols) # First call
+        
         current_state = 'q'
-        
-        
         
         for element in aux_string:
             
@@ -115,9 +117,15 @@ def validate_string_PDA(string_validate, PDA, animate):
             
             current_state = PDA[current_state][element]
             print(current_state)
-        
+            
+            
             if current_state == 'q':
+                
                 stack.push('X')
+                
+                # Add to the stack symbols an X
+                
+                stack_symbols = 'X' + stack_symbols
                 
                 if animate: 
                     # Animation process
@@ -130,9 +138,16 @@ def validate_string_PDA(string_validate, PDA, animate):
                 
                     
             elif current_state == 'p':
+                
                 print(stack.peek())
+                
                 if stack.peek() == 'X':
                     stack.pop()
+                    
+                    
+                    # Write in the file, in this case we change the stack_symbols by erasing an X
+                    
+                    stack_symbols = stack_symbols[1:]
                     
                     if animate:
                         # Animation process
@@ -153,10 +168,21 @@ def validate_string_PDA(string_validate, PDA, animate):
                 
                 if stack.is_empty() and string_remain == 0:
                     #print("The string " + aux_string + "is valid")
-                    return True
+                    valid =  True
                 else:
                     #print("The string " + aux_string + "is invalid")
-                    return False
+                    valid =  False
+                
+            # Write in the text file
+            
+            # Check if the string_validate is " " if so then string_validate =  "∈"
+            
+            # if string_validate == "":
+            #     string_validate = "∈"
+            
+            write_file(filename_ID, current_state, string_validate, stack_symbols)
+            
+    return valid
            
 
 
@@ -169,7 +195,32 @@ def menu_pushdown_automata():
         print("1.-Enter a string")
         print("2.-Random string")
         print("3.-Exit")
+
+
+def write_file(filename_ID, current_state, remain_string, stack_symbols):
+    
+    """
+    Function to write the goes-to relation in the text file
+    The goes to relation needs the current state, the remaining string and the current stack_symbols.
+    """
+    
+    try:
         
+        with open(filename_ID, "a", encoding="utf-8") as f_obj:
+                
+            # Write the initial goes to relation
+            # (q, remain_string, stack_symbol)
+            
+            if remain_string == "":
+                remain_string = "∈"
+                
+            f_obj.write('\t('+ current_state + ', ' + remain_string + ', ' + stack_symbols + ')')
+            
+    except FileNotFoundError:
+            
+        print("We couldn't find the " + filename_ID + " file, please try again.")
+    
+    
         
 def main():
     
@@ -199,7 +250,8 @@ def main():
                 
                 animate = True
             
-                actions_PDA(binary_string, animate, filename_ID)
+            
+            actions_PDA(binary_string, animate, filename_ID)
             
         elif exit == 2:
             

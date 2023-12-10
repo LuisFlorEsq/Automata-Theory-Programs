@@ -1,1 +1,0 @@
-The string is: 000111
