@@ -1,0 +1,4 @@
+Selected rule: 4 -> 0P0,  Current palindrome: 0P0
+Selected rule: 4 -> 0P0,  Current palindrome: 00P00
+Selected rule: 3 -> 1,  Current palindrome: 00100
+The final palindrome is: 00100
