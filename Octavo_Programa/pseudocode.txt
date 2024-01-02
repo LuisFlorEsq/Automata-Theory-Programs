@@ -1,0 +1,15 @@
+if (condition){
+	if (condition){
+		if (condition){
+			if (condition){
+				<statement>;
+			}
+		}else{
+			<statement>;
+		}
+	}else{
+		<statement>;
+	}
+}else{
+	<statement>;
+}

@@ -1,0 +1,25 @@
+iCtSA
+Variable A-> ;eS
+iCtS;eS
+Variable S-> (iCtSA)
+iCt(iCtSA);eS
+Variable A-> ;eS
+iCt(iCtS;eS);eS
+Variable S-> (iCtSA)
+iCt(iCt(iCtSA);eS);eS
+Variable A-> ;eS
+iCt(iCt(iCtS;eS);eS);eS
+Variable A-> ϵ
+iCt(iCt(iCtS;eS);eS);eS
+Variable A-> ϵ
+iCt(iCt(iCtS;eS);eS);eS
+Variable A-> ;eS
+iCt(iCt(iCtS;eS);eS);eS
+Variable A-> ;eS
+iCt(iCt(iCtS;eS);eS);eS
+Variable A-> ϵ
+iCt(iCt(iCtS;eS);eS);eS
+Variable S-> (iCtSA)
+iCt(iCt(iCt(iCtSA);eS);eS);eS
+Variable A-> ϵ
+iCt(iCt(iCt(iCtS);eS);eS);eS
