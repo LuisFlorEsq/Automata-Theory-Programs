@@ -1,0 +1,2 @@
+Instantaneous Descriptions for the binary string: 0011
+qo0011 |- Xqi011 |- X0qi11 |- Xq20Y1 |- q2X0Y1 |- Xqo0Y1 |- XXqiY1 |- XXYqi1 |- XXq2YY |- Xq2XYY |- XXqoYY |- XXYq3Y |- XXYYq3 |- XXYYBq4
