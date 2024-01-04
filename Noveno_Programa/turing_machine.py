@@ -220,7 +220,6 @@ def main():
             else:
                 print("The binary string " + string_input + " is not valid!")
                 
-            
             # Decide if animate or not the process
             if len(string_input) <= 16:
                 
@@ -249,7 +248,6 @@ def main():
                 print("The binary string " + string_input + " is valid!")
             else:
                 print("The binary string " + string_input + " is not valid!")
-            
             
             # Decide if animate or not the process
             if len(string_input) <= 16:

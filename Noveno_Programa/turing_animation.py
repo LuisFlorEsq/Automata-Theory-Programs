@@ -17,7 +17,6 @@ def animate_process(descriptions_file, canvas, main_window):
     Animate the whole process of the Turning Machine
     """
 
-    
     # Open the descriptions text file to animate the proccess
     
     try:
@@ -30,7 +29,7 @@ def animate_process(descriptions_file, canvas, main_window):
             
             # Split the text to work without the '|-' symbol
             
-            descriptions_list = descriptions_txt.split(' |- ')
+            descriptions_list = [description for description in descriptions_txt.split(' |- ') if description]
             
             animate_step(descriptions_list, canvas, 0, main_window)
                                         
@@ -64,10 +63,24 @@ def animate_step(descriptions_list, canvas, index, main_window):
     
     else:
         
-        # When all the steps were animated, destroy the window
+        # When all the steps were animated, destroy the window and plot a message that indicates if the string is valid or not
         
-        main_window.destroy()
+        final_message  = 'The binary string is not valid'
         
+        description = descriptions_list[-1]
+        current_description = convert_description(description)
+        head_position = next((i for i, s in enumerate(current_description) if s.startswith('q')), None)
+        current_state = current_description[head_position] if head_position is not None else ''
+        
+        if current_state == 'q4':
+            
+            final_message = 'The binary string is valid'   
+        
+        
+        canvas.create_text(600, 350, text=final_message, fill="black", font=('Helvetica', 15, 'bold'))
+        
+        # main_window.update_idletasks()
+        main_window.after(2000, main_window.destroy)
         
 
 def draw_machine(current_description, head_position, canvas):
@@ -108,6 +121,8 @@ def convert_description(description):
     i = 0
     size_description = len(description)
     current_description = []
+    head_position = None  # Default value when 'q' is not found
+
     
     while i < size_description:
         
