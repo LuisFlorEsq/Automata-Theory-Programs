@@ -18,6 +18,11 @@ Consideraciones a tener en cuenta para el desarrollo del programa:
 import random
 import math
 import time
+import tkinter as tk
+
+# Import the animation module
+
+from turing_animation import *
 
 # Text file to save the ID'S of the program
 
@@ -93,7 +98,8 @@ def validate_string_TM(string_input, descriptions_file):
     
     while current_state != 'q4':
         
-        if head_position >= len(aux_string):
+        # Expand the Turing Machine space when it is necessary
+        if head_position >= len(aux_string)-1:
             
             aux_string.append('B')
             
@@ -102,9 +108,9 @@ def validate_string_TM(string_input, descriptions_file):
             aux_string.insert(0, 'B')
         
         current_symbol = aux_string[head_position]
-        print(current_symbol)
+        # print(current_symbol)
         transition_key = (current_state, current_symbol) # Create a key which contains the current_state and the symbol in the head_position
-        print(transition_key)
+        # print(transition_key)
         
         # Check that the transition_key is in the transition_rules dictionary
         
@@ -136,11 +142,12 @@ def validate_string_TM(string_input, descriptions_file):
             current_state = next_state
             
             # Write the description on the text file
-            print("Writing ID\n")
             
             write_description(descriptions_file, head_position, aux_string, current_state)
         
         else:
+            
+            # If the program finds a non-declared transition it means that the binary string is not valid
             
             valid = False
             return valid
@@ -212,7 +219,23 @@ def main():
                 print("The binary string " + string_input + " is valid!")
             else:
                 print("The binary string " + string_input + " is not valid!")
+                
+            
+            # Decide if animate or not the process
+            if len(string_input) <= 16:
+                
+                # Initialize the tkinter elements
+                main_window = tk.Tk()
+                main_window.title('Turing Machine Implementation')
+                canvas = tk.Canvas(main_window, width=1200, height=400)
+                canvas.pack()
 
+                animate_process(descriptions_file, canvas, main_window)
+                
+                # Start the Tkinter main loop
+                main_window.mainloop()
+                
+            
         elif exit == 2:
             
             print("-------------")
@@ -227,6 +250,21 @@ def main():
             else:
                 print("The binary string " + string_input + " is not valid!")
             
+            
+            # Decide if animate or not the process
+            if len(string_input) <= 16:
+                
+                # Initialize the tkinter elements
+                main_window = tk.Tk()
+                main_window.title('Turing Machine Implementation')
+                canvas = tk.Canvas(main_window, width=1200, height=400)
+                canvas.pack()
+
+                animate_process(descriptions_file, canvas, main_window)
+                
+                # Start the Tkinter main loop
+                main_window.mainloop()
+            
         else:
             
             print("Please select a valid option.")         
@@ -235,8 +273,6 @@ def main():
     print("See ya!")
     
     return
-
-
 
 # Execute the whole code
 
