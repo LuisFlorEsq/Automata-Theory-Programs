@@ -27,6 +27,8 @@ def initialize_animation():
     # Basic configuration
     surface = py.display.set_mode((500,500)) # Window size
     font = py.font.SysFont("Garamond", 15) # Type font and size font
+    py.display.set_caption("PushDown Automata - Animation") # Screen title
+
     
     # Text configuration
     stack_Text = font.render('X', False, (0, 0, 0))

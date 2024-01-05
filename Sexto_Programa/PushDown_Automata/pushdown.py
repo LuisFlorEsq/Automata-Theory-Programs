@@ -58,12 +58,9 @@ def actions_PDA(string, animate, filename_ID):
     valid_string = validate_string_PDA(string, pda, animate, filename_ID)
     
     if (valid_string):
-        print("The string " + string + " is valid")
+        print("The string: " + string + " is valid")
     else:
-        print("The string " + string + " is not valid")
-        
-        
-   
+        print("The string: " + string + " is not valid")
     
     
 def validate_string_PDA(string_validate, PDA, animate, filename_ID):
@@ -113,10 +110,10 @@ def validate_string_PDA(string_validate, PDA, animate, filename_ID):
         
         for element in aux_string:
             
-            print("Remaining string: " + string_validate)
+            # print("Remaining string: " + string_validate)
             
             current_state = PDA[current_state][element]
-            print(current_state)
+            # print(current_state)
             
             
             if current_state == 'q':
@@ -139,7 +136,7 @@ def validate_string_PDA(string_validate, PDA, animate, filename_ID):
                     
             elif current_state == 'p':
                 
-                print(stack.peek())
+                # print(stack.peek())
                 
                 if element == '0':
                     return False
@@ -183,6 +180,17 @@ def validate_string_PDA(string_validate, PDA, animate, filename_ID):
             # if string_validate == "":
             #     string_validate = "∈"
             
+            # Write the instantaneous description on the text file and print it on the screen
+            
+            if string_validate == "":
+                
+                aux_validate = "∈"
+            
+            else:
+                
+                aux_validate = string_validate
+                
+            print('('+ current_state + ', ' + aux_validate + ', ' + stack_symbols + ')')
             write_file(filename_ID, current_state, string_validate, stack_symbols)
             
     return valid
